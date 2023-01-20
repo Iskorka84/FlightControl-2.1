@@ -21,11 +21,17 @@ public class Plane {
         passengersWithoutSeats = new ArrayList<>();
     }
 
+    //Пошук вільних місць у літаку
     public void findFreeSeatInThisPlane(HashMap<Integer, String> passengersList, ArrayList<String> passengersWithoutSeats) {
+        //Перебираємо кожну цифру номера сидіння в літаку
         for (int i = 0; i < getSeatAmount(); i++) {
+            //Якщо такого номера сидіння ще немає в списку зайнятих пасажирами місць
+            // і хтось перебуває в списку очікування на місце
             if (!passengersList.containsKey(i) && !passengersWithoutSeats.isEmpty()) {
+                //Саджаємо на це місце першого пасажира зі списку очікування
                 passengersList.put(i, passengersWithoutSeats.get(0));
                 System.out.println("A free seat for passenger " + getPassengersList().get(i) + " on the flight " + getFlightID() + " to " + getDestination() + " is founded");
+                //Видаляємо зі списку очікування пасажира, що отримав місце
                 passengersWithoutSeats.remove(0);
             }
         }
